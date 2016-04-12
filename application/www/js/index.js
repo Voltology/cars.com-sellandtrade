@@ -1,21 +1,14 @@
 var data = '';
 
-function jsonpCallback(response) {
-  $.each(response.response, function(key, value) {
-    download(key);
-  });
-  localStorage.setItem('data', JSON.stringify(response));
-  document.location = 'main.html';
-}
-
-function download(num) {
+function download(key) {
+  alert(key);
 /*
   var ft = new FileTransfer();
   var fs = new FileSystem();
   ft.download(
-    'http://dealeradvantage.cars.com/landing/2016.03-Sell-and-Trade-Center/2016.03-st-resolution/video/chapter' + num.toString() + '.mp4',
+    'http://dealeradvantage.cars.com/landing/2016.03-Sell-and-Trade-Center/2016.03-st-resolution/video/chapter' + key.toString() + '.mp4',
     //'/sdcard/chapter1.mp4', // this is the filename as well complete url
-    fs.root.toURL() + 'chapter' + num.toString() + '.mp4',
+    fs.root.toURL() + 'chapter' + key.toString() + '.mp4',
     function(entry) {
       alert('success');
       alert(JSON.stringify(entry));
@@ -29,27 +22,38 @@ function download(num) {
 }
 
 function getData() {
-  if (!localStorage.setItem('data', data)) {
-    var url = 'http://clients.voltology.io/cars.com/sellandtrade/api/?callback=?';
-    $.ajax({
-      type: 'GET',
-      url: url,
-      async: false,
-      jsonpCallback: 'jsonpCallback',
-      contentType: 'application/json',
-      dataType: 'jsonp'
-    });
-  } else {
-    document.location = 'main.html';
-  }
+  var url = 'http://clients.voltology.io/cars.com/sellandtrade/api/?callback=?';
+  $.ajax({
+    type: 'GET',
+    url: url,
+    async: false,
+    jsonpCallback: 'jsonpCallback',
+    contentType: 'application/json',
+    dataType: 'jsonp'
+  });
+}
+
+function jsonpCallback(response) {
+  localStorage.setItem('data', JSON.stringify(response));
+  $.each(response.response, function(key, value) {
+    download(key);
+  });
+  document.location = 'main.html';
 }
 
 function onDeviceReady() {
   //cordova.exec(null, null, "SplashScreen", "hide", [])
   //var networkState = navigator.connection.type;
   $('.title-bar-text').html('Sell & Trade');
+  var networkState = true;
   //if (networkState === 'wifi') {
-  getData();
+  if (networkState) {
+    if (!localStorage.getItem('data')) {
+      getData();
+    } else {
+      document.location = 'main.html';
+    }
+  }
   //}
   /*$('.title-bar').css({
     'left' : $('.video-player').offset().left - 50,

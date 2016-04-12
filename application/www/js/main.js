@@ -61,15 +61,12 @@ var menu = {
 function setData() {
   var response = JSON.parse(localStorage.getItem('data'));
   data = response.response;
-  //var count = 0;
   $.each(response.response, function(key, value) {
     if (key === 0) {
-    //if (count === 0) {
       $('.title-bar-text').html(value.name);
       $('.video-player').html('<source src="' + value.filepath + '"></source>');
     }
     menu.add(value.name, value.filepath, key);
-    //count++;
   });
 }
 
