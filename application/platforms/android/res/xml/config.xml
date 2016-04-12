@@ -7,23 +7,6 @@
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
-    <allow-intent href="market:*" />
-    <preference name="orientation" value="landscape" />
-    <name>Cars.com Sell And Trade</name>
-    <description>
-        Cars.com Sell And Trade Application
-    </description>
-    <author email="cvuletich@gmail.com" href="http://voltology.io">
-      Chris Vuletich - Voltology.io
-    </author>
-    <content src="index.html" />
-    <access origin="*" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="https://*/*" />
-    <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
-    <allow-intent href="mailto:*" />
-    <allow-intent href="geo:*" />
     <feature name="File">
         <param name="android-package" value="org.apache.cordova.file.FileUtils" />
         <param name="onload" value="true" />
@@ -35,4 +18,16 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <preference name="orientation" value="landscape" />
+    <name>Sell &amp; Trade</name>
+    <description>
+      Cars.com Sell And Trade Application
+    </description>
+    <author email="cvuletich@gmail.com" href="http://voltology.io">
+      Chris Vuletich - Voltology.io
+    </author>
+    <content src="index.html" />
+    <allow-navigation href="*" />
+    <access origin="*" />
+    <allow-intent href="*" />
 </widget>

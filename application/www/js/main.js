@@ -1,41 +1,5 @@
 var data = '';
 
-function jsonpCallback(response) {
-  var count = 0;
-  data = response.response;
-  for (var i = 1; i <= 5; i++) {
-  }
-  $.each(response.response, function(key, value) {
-    download(count + 1);
-    if (count === 0) {
-      $('.title-bar-text').html(value.name);
-      $('.video-player').html('<source src="' + value.filepath + '"></source>');
-    }
-    menu.add(value.name, value.filepath, key);
-    count++;
-  });
-}
-
-function download(num) {
-/*
-  var ft = new FileTransfer();
-  var fs = new FileSystem();
-  ft.download(
-    'http://dealeradvantage.cars.com/landing/2016.03-Sell-and-Trade-Center/2016.03-st-resolution/video/chapter' + num.toString() + '.mp4',
-    //'/sdcard/chapter1.mp4', // this is the filename as well complete url
-    fs.root.toURL() + 'chapter' + num.toString() + '.mp4',
-    function(entry) {
-      alert('success');
-      alert(JSON.stringify(entry));
-
-    },
-    function(err) {
-      //alert(JSON.stringify(err));
-    }
-  );
-*/
-}
-
 var menu = {
   menuIndex : 0,
   menuOpen : false,
@@ -94,23 +58,23 @@ var menu = {
   }
 }
 
-function getData() {
-  var url = 'http://clients.voltology.io/cars.com/sellandtrade/api/?callback=?';
-  $.ajax({
-    type: 'GET',
-    url: url,
-    async: false,
-    jsonpCallback: 'jsonpCallback',
-    contentType: 'application/json',
-    dataType: 'jsonp'
+function setData() {
+  var response = JSON.parse(localStorage.getItem('data'));
+  data = response.response;
+  //var count = 0;
+  $.each(response.response, function(key, value) {
+    if (key === 0) {
+    //if (count === 0) {
+      $('.title-bar-text').html(value.name);
+      $('.video-player').html('<source src="' + value.filepath + '"></source>');
+    }
+    menu.add(value.name, value.filepath, key);
+    //count++;
   });
 }
 
 function onDeviceReady() {
-  var networkState = navigator.connection.type;
-  if (networkState === 'wifi') {
-    getData();
-  }
+  setData();
   $('.title-bar').css({
     'left' : $('.video-player').offset().left - 50,
     'top' : $('.blue-bar').offset().top + 10
@@ -130,5 +94,5 @@ function onDeviceReady() {
   });
 }
 
-//$(document).ready(function() { onDeviceReady(); });
-document.addEventListener('deviceready', onDeviceReady, false);
+$(document).ready(function() { onDeviceReady(); });
+//document.addEventListener('deviceready', onDeviceReady, false);

@@ -1,25 +1,4 @@
 var data = '';
-var ajax = {
-  get : function(url, query, callback) {
-    jQuery.ajax({
-      type: 'POST',
-      url: url,
-      data: query,
-      dataType: 'json',
-      success: function(response) {
-        callback(response);
-      }
-    });
-  },
-  send : function(url, query) {
-    jQuery.ajax({
-      type: 'GET',
-      url: url,
-      data: query,
-      dataType: 'json'
-    });
-  }
-};
 
 var menu = {
   menuIndex : 0,
@@ -79,26 +58,26 @@ var menu = {
   }
 }
 
-function init() {
-  $('.title-bar').css({
-    'left' : $('.video-player').offset().left - 50,
-    'top' : $('.blue-bar').offset().top + 10
+function setData() {
+  var response = JSON.parse(localStorage.getItem('data'));
+  data = response.response;
+  //var count = 0;
+  $.each(response.response, function(key, value) {
+    if (key === 0) {
+    //if (count === 0) {
+      $('.title-bar-text').html(value.name);
+      $('.video-player').html('<source src="' + value.filepath + '"></source>');
+    }
+    menu.add(value.name, value.filepath, key);
+    //count++;
   });
 }
 
-$(document).ready(function() {
-  init();
-  ajax.get('api/index.js', '', function(response) {
-    var count = 0;
-    data = response.response;
-    $.each(response.response, function(key, value) {
-      if (count === 0) {
-        $('.title-bar-text').html(value.name);
-        $('.video-player').html('<source src="' + value.filepath + '"></source>');
-        count++;
-      }
-      menu.add(value.name, value.filepath, key);
-    });
+function onDeviceReady() {
+  setData();
+  $('.title-bar').css({
+    'left' : $('.video-player').offset().left - 50,
+    'top' : $('.blue-bar').offset().top + 10
   });
   $('.hamburger').click(function() {
     if (menu.menuOpen) {
@@ -113,8 +92,7 @@ $(document).ready(function() {
   $('.arrow-left').click(function() {
     menu.prev();
   });
-});
+}
 
-$(window).resize(function() {
-  //init();
-});
+$(document).ready(function() { onDeviceReady(); });
+//document.addEventListener('deviceready', onDeviceReady, false);
