@@ -91,5 +91,5 @@ function onDeviceReady() {
   });
 }
 
-$(document).ready(function() { onDeviceReady(); });
-//document.addEventListener('deviceready', onDeviceReady, false);
+//$(document).ready(function() { onDeviceReady(); });
+document.addEventListener('deviceready', onDeviceReady, false);

@@ -1,7 +1,8 @@
 var data = '';
 
-function download(key) {
-  alert(key);
+function downloadFile(key) {
+  //alert(key);
+  var filePath = 'chapter' + key + '.mp4';
 /*
   var ft = new FileTransfer();
   var fs = new FileSystem();
@@ -19,6 +20,7 @@ function download(key) {
     }
   );
 */
+  return filePath;
 }
 
 function getData() {
@@ -34,10 +36,13 @@ function getData() {
 }
 
 function jsonpCallback(response) {
-  localStorage.setItem('data', JSON.stringify(response));
-  $.each(response.response, function(key, value) {
-    download(key);
-  });
+  data = response;
+  if (!localStorage.getItem('data') || data.version !== JSON.parse(localStorage.getItem('data')).version) {
+    $.each(response.response, function(key, value) {
+      data.response[key].filepath = downloadFile(key + 1);
+    });
+  }
+  localStorage.setItem('data', JSON.stringify(data));
   document.location = 'main.html';
 }
 
@@ -48,11 +53,11 @@ function onDeviceReady() {
   var networkState = true;
   //if (networkState === 'wifi') {
   if (networkState) {
-    if (!localStorage.getItem('data')) {
-      getData();
-    } else {
-      document.location = 'main.html';
-    }
+    getData();
+  } else if (!localStorage.setItem('data')) {
+    alert('You must be connected to the internet when running this application for the first time.');
+  } else {
+    document.location = 'main.html';
   }
   //}
   /*$('.title-bar').css({
@@ -61,5 +66,5 @@ function onDeviceReady() {
   });*/
 }
 
-$(document).ready(function() { onDeviceReady(); });
-//document.addEventListener('deviceready', onDeviceReady, false);
+//$(document).ready(function() { onDeviceReady(); });
+document.addEventListener('deviceready', onDeviceReady, false);
