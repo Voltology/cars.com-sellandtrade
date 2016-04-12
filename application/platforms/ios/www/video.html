@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+  </head>
+  <body>
+    <header>
+      <span>Cars.com</span>
+<ul class="right hide-on-med-and-down">
+    <li><a class="dropdown-button" data-constrainwidth="false" data-beloworigin="true" data-activates="about-drop" href="#!">About<i class="material-icons left">arrow_drop_down</i></a></li>
+    <li><a class="modal-trigger" href="#signup">Signup</a></li>
+    <li><a class="modal-trigger" href="#sign-in">Sign In</a></li>
+</ul>
+
+<ul id="slide-out" class="side-nav">
+    <li><a href="#">About</a></li>
+    <li><a href="#">Signup</a></li>
+    <li><a href="#">Sign In</a></li>
+</ul>
+
+<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+
+    </header>
+    <section>
+      <video class="video-player" controls>
+        <source src="video/test.mov" />
+      </video>
+    </section>
+    <footer>
+      <img src="img/logo.png" class="logo" />
+    </footer>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script>
+$(".dropdown-button").dropdown();
+$(".button-collapse").sideNav();
+$(document).ready(function(){
+    $('.modal-trigger').leanModal();
+});
+(function($){
+  $(function(){
+
+    $('.button-collapse').sideNav();
+
+  }); // end of document ready
+})(jQuery); // end of jQuery name space
+    </script>
+  </body>
+</html>
