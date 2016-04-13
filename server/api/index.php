@@ -1,7 +1,9 @@
 <?php
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
 define("HOST", "http://" . $_SERVER['HTTP_HOST']);
 ?>
-{
+<?php if ($_GET['method'] === "mobile") { echo $_GET['callback'] . "("; } ?>{
   "response" : [
     {
       "name" : "Sell & Trade from Cars.com",
@@ -23,5 +25,6 @@ define("HOST", "http://" . $_SERVER['HTTP_HOST']);
       "name" : "...That's All There Is To It!",
       "filepath" : "<?php echo HOST; ?>/cars.com/sellandtrade/video/chapter5.mp4"
     }
-  ]
-}
+  ],
+  "version" : 1
+}<?php if ($_GET['method'] === "mobile") { echo ")"; } ?>

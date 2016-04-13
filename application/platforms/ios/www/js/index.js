@@ -8,7 +8,7 @@ function downloadFile(key) {
 
 function getData() {
   $.ajax({
-    url: 'http://clients.voltology.io/cars.com/sellandtrade/api/',
+    url: 'http://clients.voltology.io/cars.com/sellandtrade/api/?method=mobile',
     dataType: 'jsonp',
     success: function(data) {
       jsonpCallback(data);
