@@ -21,11 +21,11 @@
     <preference name="orientation" value="landscape" />
     <name>Sell &amp; Trade</name>
     <description>
-      Cars.com Sell And Trade Application
-    </description>
+    Cars.com Sell And Trade Application
+  </description>
     <author email="cvuletich@gmail.com" href="http://voltology.io">
-      Chris Vuletich - Voltology.io
-    </author>
+    Chris Vuletich - Voltology.io
+  </author>
     <content src="index.html" />
     <allow-navigation href="*" />
     <access origin="*" />
