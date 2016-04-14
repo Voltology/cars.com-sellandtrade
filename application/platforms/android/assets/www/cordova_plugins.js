@@ -191,6 +191,20 @@ module.exports = [
         "file": "plugins/cordova-plugin-whitelist/whitelist.js",
         "id": "cordova-plugin-whitelist.whitelist",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-media/www/MediaError.js",
+        "id": "cordova-plugin-media.MediaError",
+        "clobbers": [
+            "window.MediaError"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-media/www/Media.js",
+        "id": "cordova-plugin-media.Media",
+        "clobbers": [
+            "window.Media"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -201,6 +215,7 @@ module.exports.metadata =
     "cordova-plugin-file": "4.1.2-dev",
     "cordova-plugin-file-transfer": "1.5.1-dev",
     "cordova-plugin-whitelist": "1.2.1",
+    "cordova-plugin-media": "2.2.0",
     "cordova-plugin-compat": "1.0.0"
 }
 // BOTTOM OF METADATA

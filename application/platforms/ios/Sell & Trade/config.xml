@@ -27,6 +27,9 @@
     <feature name="NetworkStatus">
         <param name="ios-package" value="CDVConnection" />
     </feature>
+    <feature name="Media">
+        <param name="ios-package" value="CDVSound" />
+    </feature>
     <preference name="orientation" value="landscape" />
     <name>Sell &amp; Trade</name>
     <description>

@@ -18,6 +18,9 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="Media">
+        <param name="android-package" value="org.apache.cordova.media.AudioHandler" />
+    </feature>
     <preference name="orientation" value="landscape" />
     <name>Sell &amp; Trade</name>
     <description>

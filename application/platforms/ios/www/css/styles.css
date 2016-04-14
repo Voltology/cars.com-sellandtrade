@@ -128,9 +128,18 @@ section .logo {
 }
 section .loading {
   display: block;
+  height: auto;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  margin-top: 3%;
+  width: 25%;
+}
+section .loading-text {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -10px;
+  font-size: 20px;
 }
 section .title-bar {
   font-size: 28px;
@@ -275,6 +284,66 @@ h1 {
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
+  header {
+    font-size: 34px;
+    height: 60px;
+    padding: 9px 10px 8px 70px;
+    position: relative;
+  }
+  header .logo {
+    height: 44px;
+    right: 12px;
+    top: 9px;
+  }
+  header .hamburger {
+    height: 24px;
+    left: 20px;
+    top: 18px;
+    width: auto;
+  }
+  nav {
+    padding-top: 60px;
+  }
+  nav .logo {
+    width: 180px;
+  }
+  nav #nav-list {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  nav #nav-list li {
+    padding: 14px 14px;
+  }
+  section .logo {
+    display: block;
+    margin-top: 9%;
+  }
+  section .blue-bar {
+    height: 40px;
+    margin-top: 30px;
+  }
+  section .blue-bar-main {
+    height: 40px;
+    margin-top: 30px;
+  }
+  section .title-bar-text {
+    font-size: 21px;
+    padding: 9px 10px 8px 10px;
+  }
+  section .title-bar-left,
+  section .title-bar-right {
+    height: 42px;
+  }
+  section .video-player {
+    margin-top: 5%;
+    width: 66%;
+  }
+  section .arrow-left {
+    margin-top: 19%;
+  }
+  section .arrow-right {
+    margin-top: 19%;
+  }
 
 }
 
