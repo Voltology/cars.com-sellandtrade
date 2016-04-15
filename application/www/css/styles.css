@@ -366,7 +366,7 @@ h1 {
     width: auto;
   }
   nav {
-    padding-top: 46px;
+    padding-top: 40px;
   }
   nav .logo {
     width: 180px;
@@ -380,7 +380,18 @@ h1 {
   }
   section .logo {
     display: block;
-    margin-top: 9%;
+    margin-top: 7%;
+    width: 300px;
+  }
+  nav .logo {
+    width: 180px;
+  }
+  section .loading {
+    width: 230px;
+  }
+  section .loading-text {
+    margin-top: -15px;
+    font-size: 15px;
   }
   section .blue-bar {
     height: 30px;
@@ -402,7 +413,7 @@ h1 {
   }
   section .video-player {
     margin-top: 4%;
-    width: 70%;
+    width: 64%;
   }
   section .arrow-left {
     height: 42px;
@@ -415,58 +426,69 @@ h1 {
 }
 
 /* Extra Small Devices, Phones */ 
-@media only screen and (max-width : 480px) {
+@media only screen and (max-width : 568px) {
   header {
-    font-size: 34px;
-    height: 60px;
-    padding: 9px 10px 8px 70px;
+    font-size: 24px;
+    height: 40px;
+    padding: 6px 10px 5px 50px;
     position: relative;
   }
   header .logo {
-    height: 44px;
+    height: 24px;
     right: 12px;
     top: 9px;
   }
   header .hamburger {
-    height: 24px;
-    left: 20px;
-    top: 18px;
+    height: 18px;
+    left: 12px;
+    top: 11px;
     width: auto;
   }
   nav {
-    padding-top: 50px;
+    padding-top: 45px;
+  }
+  nav #nav-list {
+    font-size: 14px;
+    margin-top: 4px;
+  }
+  nav #nav-list li {
+    padding: 7px 14px;
+  }
+  section .blue-bar {
+    height: 30px;
+    margin-top: 20px;
+  }
+  section .blue-bar-main {
+    height: 30px;
+    margin-top: 24px;
+  }
+  section .logo {
+    margin-top: 7%;
+    width: 230px;
   }
   nav .logo {
     width: 120px;
   }
-  nav #nav-list {
-    font-size: 20px;
-    margin-top: 4px;
+  section .loading {
+    width: 210px;
   }
-  nav #nav-list li {
-    padding: 14px 14px;
-  }
-  section .blue-bar {
-    height: 40px;
-    margin-top: 24px;
-  }
-  section .blue-bar-main {
-    height: 40px;
-    margin-top: 24px;
+  section .loading-text {
+    margin-top: -14px;
+    font-size: 14px;
   }
   section .title-bar-text {
-    font-size: 21px;
-    margin-top: -10px;
-    padding: 9px 10px 8px 10px;
+    font-size: 16px;
+    margin-top: -12px;
+    padding: 6px 10px 5px 10px;
   }
   section .title-bar-left,
   section .title-bar-right {
-    height: 42px;
-    margin-top: -10px;
+    height: 32px;
+    margin-top: -12px;
   }
   section .video-player {
-    margin-top: 4%;
-    width: 55%;
+    margin-top: 5%;
+    width: 60%;
   }
   section .arrow-left {
     margin-top: 19%;
