@@ -1,4 +1,5 @@
 var data = '';
+var downloadCount = 0;
 
 function downloadFile(key) {
   var filePath = 'chapter' + key + '.mp4';
@@ -51,10 +52,6 @@ function onDeviceReady() {
   }
 }
 
-
-
-
-var downloadCount = 0;
 function gotFS(fileSystem) {
   fileSystem.root.getDirectory("vids", {create: true}, gotDir);
 }
@@ -64,62 +61,43 @@ function gotDir(dirEntry) {
 }
 
 function gotFile(fileEntry) {
-    var localPath = fileEntry.fullPath;
-    var localUrl = fileEntry.toURL();
+  var localPath = fileEntry.fullPath;
+  var localUrl = fileEntry.toURL();
+  //alert('Loaded local path: ' + localPath);
+  //alert('Loaded local url: ' + localUrl);
+  var fileTransfer = new FileTransfer();
+  var uri = encodeURI(data.response[downloadCount].filepath);
+  $('.loading-text').html('Retrieving Files... (' + (downloadCount + 1).toString() + ' of ' + data.response.length + ')');
+  //alert('Downloading ' + uri + ' to ' + localPath);
 
-    //alert('Loaded local path: ' + localPath);
-    //alert('Loaded local url: ' + localUrl);
-
-    var fileTransfer = new FileTransfer();
-    //var uri = encodeURI('http://dealeradvantage.cars.com/landing/2016.03-Sell-and-Trade-Center/2016.03-st-resolution/video/chapter' + downloadCount + '.mp4');
-    var uri = encodeURI(data.response[downloadCount].filepath);
-    $('.loading-text').html('Retrieving Files... (' + (downloadCount + 1).toString() + ' of ' + data.response.length + ')');
-    //alert('Downloading ' + uri + ' to ' + localPath);
-
-    fileTransfer.download(
-        uri,
-        localUrl,
-        function(entry) {
-            //alert('download complete (path): ' + entry.fullPath); // Returns '/vids/some_video.mp4'
-            //alert('download complete (url): ' + entry.toURL()); // Returns 'cdvfile://localhost/persistent/vids/some_video.mp4'
-            /*
-            document.getElementById('video_container').innerHTML = 
-            'Downloaded Video path: ' + entry.fullPath + '<br />'
-            + 'Downloaded Video url: ' + entry.toURL() + '<br />'
-            + '<video width="100%" height="300" controls>' 
-            + '<source src="' + entry.toURL() + '" type="video/mp4">'
-            + '</video>';
-            */
-            data.response[downloadCount].filepath = entry.toURL();
-            downloadCount++;
-            if (downloadCount < data.response.length) {
-              window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-            } else {
-              localStorage.setItem('data', JSON.stringify(data));
-              alert(localStorage.getItem('data'));
-              alert('Videos successfully downloaded!');
-              document.location = 'main.html';
-            }
-        },
-        function(error) {
-            //alert('download error source ' + error.source);
-            //alert('download error target ' + error.target);
-            alert('There was an error while downloading the videos.  Please reopen the application and try again.');
-            navigator.app.exitApp();
-        }
-    );
+  fileTransfer.download(
+    uri,
+    localUrl,
+    function(entry) {
+      //alert('download complete (path): ' + entry.fullPath); // Returns '/vids/some_video.mp4'
+      //alert('download complete (url): ' + entry.toURL()); // Returns 'cdvfile://localhost/persistent/vids/some_video.mp4'
+      data.response[downloadCount].filepath = entry.toURL();
+      downloadCount++;
+      if (downloadCount < data.response.length) {
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+      } else {
+        localStorage.setItem('data', JSON.stringify(data));
+        alert('Files successfully downloaded!');
+        document.location = 'main.html';
+      }
+    },
+    function(error) {
+      //alert('download error source ' + error.source);
+      //alert('download error target ' + error.target);
+      alert('There was an error while downloading the files.  Please make sure your device is connect to the internet, reopen the application, and try again.');
+      navigator.app.exitApp();
+    }
+  );
 }
 
 function fail(error) {
-    alert('Error creating file [' + error.name + ']: ' + error.message);
+  alert('Error creating file [' + error.name + ']: ' + error.message);
 }
-
-
-
-
-
-
-
 
 //$(document).ready(function() { onDeviceReady(); });
 document.addEventListener('deviceready', onDeviceReady, false);

@@ -336,7 +336,7 @@ h1 {
   }
   section .video-player {
     margin-top: 5%;
-    width: 66%;
+    width: 70%;
   }
   section .arrow-left {
     margin-top: 19%;
@@ -402,7 +402,7 @@ h1 {
   }
   section .video-player {
     margin-top: 4%;
-    width: 66%;
+    width: 70%;
   }
   section .arrow-left {
     height: 42px;
@@ -445,10 +445,6 @@ h1 {
   }
   nav #nav-list li {
     padding: 14px 14px;
-  }
-  section .logo {
-    display: block;
-    margin-top: 9%;
   }
   section .blue-bar {
     height: 40px;
