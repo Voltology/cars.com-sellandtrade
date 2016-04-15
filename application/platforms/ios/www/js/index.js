@@ -24,7 +24,7 @@ function jsonpCallback(response) {
     });
   }
   localStorage.setItem('data', JSON.stringify(data));
-  pause(1);
+  document.location = 'main.html';
 }
 
 function pause(count) {
@@ -33,16 +33,15 @@ function pause(count) {
   if (count <= 5) {
     setTimeout(function() { pause(count); }, 3000);
   } else {
-    document.location = 'main.html';
   }
-
 }
 
 function onDeviceReady() {
-  //window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+  cordova.exec(null, null, "SplashScreen", "hide", [])
   $('.title-bar').css({
     'top' : $('.blue-bar').offset().top + 10
   });
+  window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 /*
   var fileTransfer = new FileTransfer();
   var uri = encodeURI("http://clients.voltology.io/cars.com/sellandtrade/video/chapter1.mp4");
@@ -62,7 +61,6 @@ function onDeviceReady() {
       }
   );
 */
-  cordova.exec(null, null, "SplashScreen", "hide", [])
   var networkState = navigator.connection.type;
   if (networkState === 'wifi') {
     getData();
@@ -89,6 +87,24 @@ function gotFile(fileEntry) {
     var localPath = fileEntry.fullPath;
     var localUrl = fileEntry.toURL();
 
+    alert('top');
+requestFileSystem(TEMPORARY, 0, function(fileSystem) {
+    var ft = new FileTransfer();
+    var uri = encodeURI('http://dealeradvantage.cars.com/landing/2016.03-Sell-and-Trade-Center/2016.03-st-resolution/video/chapter1.mp4');
+    alert('here');
+    ft.download(uri, fileSystem.root.toURL() + "/vids/" + filename, function(entry) {
+        alert('got1');
+        /*document.getElementById('video_container').innerHTML = 
+              'Downloaded Video path: ' + entry.fullPath + '<br />'
+            + 'Downloaded Video url: ' + entry.toURL() + '<br />'
+            + '<video width="100%" height="300" controls>' 
+            + '<source src="' + entry.toNativeURL() + '" type="video/mp4">'
+            + '</video>';
+      */
+    });
+        alert('got2');
+});
+/*
     alert('Loaded local path: ' + localPath);
     alert('Loaded local url: ' + localUrl);
 
@@ -100,8 +116,9 @@ function gotFile(fileEntry) {
         uri,
         localUrl,
         function(entry) {
-            alert('download complete (path): ' + entry.fullPath); // Returns '/vids/some_video.mp4'
-            alert('download complete (url): ' + entry.toURL()); // Returns 'cdvfile://localhost/persistent/vids/some_video.mp4'
+            //alert('download complete (path): ' + entry.fullPath); // Returns '/vids/some_video.mp4'
+            //alert('download complete (url): ' + entry.toURL()); // Returns 'cdvfile://localhost/persistent/vids/some_video.mp4'
+            /*
             document.getElementById('video_container').innerHTML = 
             'Downloaded Video path: ' + entry.fullPath + '<br />'
             + 'Downloaded Video url: ' + entry.toURL() + '<br />'
@@ -115,6 +132,7 @@ function gotFile(fileEntry) {
             alert('download error target ' + error.target);
         }
     );
+    */
 }
 
 function fail(error) {

@@ -89,6 +89,7 @@ function onDeviceReady() {
   $('.arrow-left').click(function() {
     menu.prev();
   });
+  $('.video-player').height((9 * $('.video-player').width()) / 16);
 }
 
 //$(document).ready(function() { onDeviceReady(); });
