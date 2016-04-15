@@ -20,11 +20,11 @@ function getData() {
 function jsonpCallback(response) {
   data = response;
   if (!localStorage.getItem('data') || data.version !== JSON.parse(localStorage.getItem('data')).version) {
-    $.each(response.response, function(key, value) {
-      data.response[key].filepath = downloadFile(key + 1);
-    });
+    localStorage.setItem('data', JSON.stringify(data));
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+  } else {
+    document.location = 'main.html';
   }
-  window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 }
 
 function pause(count) {
@@ -44,11 +44,12 @@ function onDeviceReady() {
   var networkState = navigator.connection.type;
   if (networkState === 'wifi') {
     getData();
-  } else if (localStorage.getItem('data') == null) {
+  } else if (!localStorage.getItem('data')) {
+    localStorage.removeItem('data');
     alert('You must be connected to the internet when running this application for the first time. Please connect to WiFi and reopen the application.');
     navigator.app.exitApp();
   } else {
-    //document.location = 'main.html';
+    document.location = 'main.html';
   }
 }
 
@@ -89,6 +90,7 @@ function gotFile(fileEntry) {
     function(error) {
       //alert('download error source ' + error.source);
       //alert('download error target ' + error.target);
+      localStorage.removeItem('data');
       alert('There was an error while downloading the files.  Please make sure your device is connect to the internet, reopen the application, and try again.');
       navigator.app.exitApp();
     }

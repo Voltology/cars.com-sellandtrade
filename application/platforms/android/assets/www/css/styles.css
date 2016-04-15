@@ -366,7 +366,7 @@ h1 {
     width: auto;
   }
   nav {
-    padding-top: 46px;
+    padding-top: 40px;
   }
   nav .logo {
     width: 180px;
@@ -383,11 +383,14 @@ h1 {
     margin-top: 7%;
     width: 300px;
   }
+  nav .logo {
+    width: 180px;
+  }
   section .loading {
-    width: 280px;
+    width: 230px;
   }
   section .loading-text {
-    margin-top: -14px;
+    margin-top: -15px;
     font-size: 15px;
   }
   section .blue-bar {
@@ -410,7 +413,7 @@ h1 {
   }
   section .video-player {
     margin-top: 4%;
-    width: 70%;
+    width: 64%;
   }
   section .arrow-left {
     height: 42px;
